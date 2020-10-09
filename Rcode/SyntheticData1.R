@@ -1,6 +1,6 @@
 ##########################################################
 # In a similar manner as 
-# textbook (pg 77 Chapter 6) the code below generates synthetic 
+# textbook (Applied survival Analysis Using R pg 77 Chapter 6) the code below generates synthetic 
 # survival data for: 
 #   N = 400 participants
 #   event: is age to AD dementia
