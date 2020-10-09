@@ -49,7 +49,7 @@ tt<- rexp(n = N, rate = exp(log.rate.vec))
 #head(tt) 
 
 dat<- mutate(dat, SurvivalTime = tt, 
-        Age.start = Age - tt, # age at time they commenced the study
+        Age.start = Age, # age at time they commenced the study
         Age.end = tt + Age) # age at last follow-up
 
 # randomise rows
@@ -144,18 +144,6 @@ mdl1<- coxph(Surv(time = dat$Age.start,
                      type = "counting") ~ 
                   dat$APOE + dat$Age)
 summary(mdl1)
-
-# With 80% censoring we get back
-# APOE e4 allele carrier parameter (value of 2)
-# Age effect is not retrieved (value = 0.05)
-#
-#             coef exp(coef) se(coef)      z Pr(>|z|)    
-# dat$APOE1  0.5886    1.8015   0.2529  2.327   0.0199 *  
-# dat$Age   -1.2404    0.2893   0.2932 -4.231 2.33e-05 *** <-- did not recover age
-# 
-#             exp(coef) exp(-coef) lower .95 upper .95
-# dat$APOE1    1.8015     0.5551    1.0974    2.9573
-# dat$Age      0.2893     3.4571    0.1628    0.5139
 
 # APOE e4 allele carriers are 1.8 times more likely to develope AD
 # compared to non-carriers
